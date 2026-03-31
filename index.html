@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linguaele - Aprende Español Online (Clases Personalizadas + DELE)</title>
+    <meta name="description" content="Aprende español fluido en 8 semanas. Clases 1-a-1, profesores certificados DELE, comunidad viva. Comienza tu clase gratis hoy.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #30B5AA;
+            --secondary: #FF705E;
+            --dark: #3E4D5D;
+            --light: #F5F7FA;
+            --accent: #FFB627;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: white;
+        }
+
+        /* HEADER/NAV */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .cta-header {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.9em;
+        }
+
+        .cta-header:hover {
+            transform: scale(1.05);
+            background: #2a9d8f;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, rgba(48, 181, 170, 0.1) 0%, rgba(255, 112, 94, 0.05) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(48, 181, 170, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            letter-spacing: -2px;
+        }
+
+        .hero h1 .highlight {
+            color: var(--primary);
+        }
+
+        .hero .tagline {
+            font-size: 1.3em;
+            color: #666;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 2rem 0 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 0.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a9d8f 100%);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(48, 181, 170, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(48, 181, 170, 0.4);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-secondary:hover {
+            background: var(--light);
+        }
+
+        /* SECTION */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        h2 {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 3rem;
+        }
+
+        /* WHY US */
+        .why-us {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3em;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3em;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* TESTIMONIOS */
+        .testimonials {
+            background: linear-gradient(135deg, rgba(48, 181, 170, 0.05) 0%, rgba(255, 112, 94, 0.05) 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 4px solid var(--secondary);
+        }
+
+        .stars {
+            color: #FFB627;
+            font-size: 1.2em;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+            color: #333;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .testimonial-role {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        /* PRECIOS */
+        .pricing {
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e0e4e8;
+            border-radius: 15px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(48, 181, 170, 0.2);
+        }
+
+        .badge {
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        .plan-name {
+            font-size: 1.8em;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .price {
+            font-size: 3em;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .price-period {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .features-list {
+            text-align: left;
+            margin: 2rem 0;
+        }
+
+        .features-list li {
+            list-style: none;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e4e8;
+            color: #666;
+            display: flex;
+            align-items: center;
+        }
+
+        .features-list li:before {
+            content: "✓";
+            color: var(--primary);
+            font-weight: 800;
+            margin-right: 0.8rem;
+            font-size: 1.2em;
+        }
+
+        .pricing-card .btn-primary {
+            width: 100%;
+            margin-top: 1.5rem;
+            padding: 1rem 2rem;
+        }
+
+        /* FORMULARIO */
+        .register-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #2a9d8f 100%);
+            color: white;
+        }
+
+        .register-section h2 {
+            color: white;
+        }
+
+        .register-section .section-subtitle {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+            color: var(--dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #e0e4e8;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(48, 181, 170, 0.1);
+        }
+
+        .form-submit {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, #2a9d8f 100%);
+            color: white;
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(48, 181, 170, 0.3);
+        }
+
+        /* FAQ */
+        .faq {
+            background: white;
+        }
+
+        .faq-item {
+            background: var(--light);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: var(--dark);
+            font-size: 1.1em;
+        }
+
+        .faq-answer {
+            margin-top: 1rem;
+            color: #666;
+            line-height: 1.8;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9em;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            h2 {
+                font-size: 2em;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .feature-card {
+            animation: fadeInUp 0.8s ease;
+            animation-fill-mode: both;
+        }
+
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        .feature-card:nth-child(4) { animation-delay: 0.4s; }
+        .feature-card:nth-child(5) { animation-delay: 0.5s; }
+        .feature-card:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <nav>
+            <div class="logo">Lingua<span>ele</span></div>
+            <ul class="nav-links">
+                <li><a href="#why">¿Por Qué?</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#pricing">Precios</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <a href="#register" class="cta-header">Clase Gratis</a>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Habla Español con <span class="highlight">Confianza</span> en 8 Semanas</h1>
+            <p class="tagline">Clases 1-a-1 personalizadas • Profesores certificados DELE • Comunidad viva • 100% online</p>
+            
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Estudiantes Felices</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Tasa de Éxito</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4.9★</div>
+                    <div class="stat-label">Calificación Promedio</div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <button onclick="document.getElementById('register').scrollIntoView()" class="btn-primary">
+                    🎁 Agendar Clase Gratis
+                </button>
+                <button onclick="document.getElementById('faq').scrollIntoView()" class="btn-secondary">
+                    Saber Más
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY US -->
+    <section id="why" class="why-us">
+        <h2>¿Por Qué Elegir <span class="highlight">Linguaele</span>?</h2>
+        <p class="section-subtitle">No somos una escuela de español más. Somos tu comunidad de aprendizaje.</p>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">👨‍🏫</div>
+                <h3>Profesores Certificados</h3>
+                <p>Todos nuestros maestros tienen certificación DELE y más de 5 años de experiencia enseñando.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎮</div>
+                <h3>Aprendizaje Gamificado</h3>
+                <p>Aprende jugando. Gana puntos, badges, y compite con otros estudiantes en nuestra plataforma.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗣️</div>
+                <h3>Habla desde Día 1</h3>
+                <p>Método comunicativo real. El 80% de cada clase es CONVERSACIÓN, no teoría.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌍</div>
+                <h3>Comunidad Global</h3>
+                <p>Practica con estudiantes de 40+ países. Haz amigos mientras aprendes.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⏰</div>
+                <h3>Horarios Flexibles</h3>
+                <p>Clases 100% online. Elige tu horario. Estudia en pijama si quieres.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Resultados Comprobados</h3>
+                <p>A1 → B2 en 6 meses. Muchos estudiantes aprueban DELE al primer intento.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS -->
+    <section id="testimonials" class="testimonials">
+        <h2>Lo Que Dicen Nuestros Estudiantes</h2>
+        <p class="section-subtitle">Historias reales de transformación lingüística</p>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Hace 3 meses no podía pedir un café en español. Hoy tuve una conversación de 30 minutos completamente en español. Linguaele cambió mi vida."</p>
+                <div class="testimonial-author">María García</div>
+                <div class="testimonial-role">Ejecutiva, USA</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Los profesores no son robots. Son personas. Eso hace la diferencia. Aprendes, te ríes, haces amigos. Así debería ser la educación."</p>
+                <div class="testimonial-author">Carlos López</div>
+                <div class="testimonial-role">Ingeniero, Canadá</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="stars">★★★★★</div>
+                <p class="testimonial-text">"Aprobé el DELE B2 con distinción. El método gamificado hizo que estudiar no sea cansador. Recomiendo Linguaele 100%."</p>
+                <div class="testimonial-author">Sofia Chen</div>
+                <div class="testimonial-role">Estudiante de Postgrado, Australia</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRECIOS -->
+    <section id="pricing" class="pricing">
+        <h2>Planes Transparentes, Sin Sorpresas</h2>
+        <p class="section-subtitle">Elige el plan que se adapte a tus objetivos</p>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">Principiante</div>
+                <div class="price">$49<span class="price-period">/mes</span></div>
+                <p style="color: #666; margin-bottom: 1rem;">Perfecto para empezar</p>
+                <ul class="features-list">
+                    <li>2 clases por semana (30 min c/u)</li>
+                    <li>Acceso plataforma gamificada</li>
+                    <li>Material didáctico</li>
+                    <li>Comunidad privada</li>
+                </ul>
+                <button class="btn-primary" onclick="document.getElementById('register').scrollIntoView()">Empezar</button>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="badge">MÁS POPULAR</div>
+                <div class="plan-name">Intensivo</div>
+                <div class="price">$119<span class="price-period">/mes</span></div>
+                <p style="color: #666; margin-bottom: 1rem;">Recomendado por 80% de estudiantes</p>
+                <ul class="features-list">
+                    <li>4 clases por semana (45 min c/u)</li>
+                    <li>Acceso plataforma premium</li>
+                    <li>Material + preparación DELE</li>
+                    <li>Comunidad + mentoría grupal</li>
+                    <li>Soporte 24/7 por WhatsApp</li>
+                </ul>
+                <button class="btn-primary" onclick="document.getElementById('register').scrollIntoView()">Empezar</button>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.95em;">
+            ✓ Todos los planes incluyen 1ª clase de diagnóstico GRATIS<br>
+            ✓ Cancelación flexible, sin compromiso de largo plazo<br>
+            ✓ Dinero de vuelta si no mejoras en 4 semanas
+        </p>
+    </section>
+
+    <!-- REGISTRO -->
+    <section id="register" class="register-section">
+        <h2>Agendar Tu Clase de Diagnóstico Gratis</h2>
+        <p class="section-subtitle">Descubre tu nivel en 30 minutos (sin compromiso)</p>
+        
+        <div class="form-container">
+            <form onsubmit="handleSubmit(event)">
+                <div class="form-group">
+                    <label for="name">Nombre Completo</label>
+                    <input type="text" id="name" name="name" required placeholder="Tu nombre">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required placeholder="eledlengua@gmail.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">WhatsApp (con código de país)</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+50 7639 05870">
+                </div>
+
+                <div class="form-group">
+                    <label for="level">¿Cuál es tu nivel actual?</label>
+                    <select id="level" name="level" required>
+                        <option value="">Selecciona...</option>
+                        <option value="principiante">Principiante (No sé nada)</option>
+                        <option value="basico">Básico (Algunas palabras)</option>
+                        <option value="intermedio">Intermedio (Conversación simple)</option>
+                        <option value="avanzado">Avanzado (Fluido casi)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="goal">¿Cuál es tu objetivo?</label>
+                    <select id="goal" name="goal" required>
+                        <option value="">Selecciona...</option>
+                        <option value="conversacion">Hablar fluidamente</option>
+                        <option value="trabajo">Mejorar en el trabajo</option>
+                        <option value="dele">Preparar DELE</option>
+                        <option value="viaje">Viajar sin miedo</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="form-submit">
+                    Agendar Mi Clase Gratis →
+                </button>
+
+                <p style="text-align: center; margin-top: 1rem; font-size: 0.85em; color: #999;">
+                    Te responderemos en menos de 2 horas
+                </p>
+            </form>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <h2>Preguntas Frecuentes</h2>
+        <p class="section-subtitle">Aquí respondemos lo que más preguntan</p>
+
+        <div class="faq-item active" onclick="toggleFaq(this)">
+            <div class="faq-question">¿Realmente necesito vivir en un país hispanohablante?</div>
+            <div class="faq-answer">No. Absolutamente no. Con método correcto + profesores buenos + consistencia, aprendes desde cualquier lugar. Tenemos estudiantes de 40 países diferentes.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">¿Cuánto tiempo tarda ver resultados?</div>
+            <div class="faq-answer">Primeros resultados: 2-3 semanas. Conversaciones básicas: 4-6 semanas. Fluidez real: 3-6 meses (depende de tu nivel inicial y consistencia).</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">¿Puedo cambiar de horario si no me gusta?</div>
+            <div class="faq-answer">Sí. Puedes cambiar tu horario sin problema. Queremos que aprendas en tu mejor momento. Solo avísanos con 48 horas de anticipación.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">¿Qué incluye la clase de diagnóstico gratis?</div>
+            <div class="faq-answer">30 minutos contigo un profesor. Hacemos un pequeño test, hablamos, evaluamos tu nivel y te damos un plan personalizado. Sin venta agresiva, sin presión.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">¿Necesito experiencia previa?</div>
+            <div class="faq-answer">No. Empezamos desde CERO si es necesario. Hemos trabajado con gente que nunca habló español en su vida. El método funciona.</div>
+        </div>
+
+        <div class="faq-item" onclick="toggleFaq(this)">
+            <div class="faq-question">¿Se puede cancelar cuando quiera?</div>
+            <div class="faq-answer">Sí. Sin compromiso de largo plazo. Si en 4 semanas no ves mejora, te devolvemos todo el dinero. Así de confiados estamos en nuestro método.</div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2024 Linguaele. Todos los derechos reservados.</p>
+        <p>Hecho con ❤️ para hispanohablantes del mundo</p>
+    </footer>
+
+    <script>
+        function toggleFaq(element) {
+            // Cerrar otros items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== element) {
+                    item.classList.remove('active');
+                }
+            });
+            // Toggle actual
+            element.classList.toggle('active');
+        }
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const level = document.getElementById('level').value;
+            const goal = document.getElementById('goal').value;
+
+            // Aquí integrarías con tu sistema (Zapier, Make, etc.)
+            // Por ahora, simular confirmación
+            
+            alert(`¡Perfecto ${name}! 🎉\n\nTu solicitud fue enviada. Te contactaremos por WhatsApp en menos de 2 horas.\n\nMientras tanto, síguenos en Instagram: @linguaele`);
+            
+            // Limpiar formulario
+            document.querySelector('form').reset();
+
+            // En producción, enviar datos a tu backend
+            console.log({name, email, phone, level, goal});
+        }
+
+        // Scroll suave en nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
