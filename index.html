@@ -2,892 +2,636 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Linguaele - Aprende Español Online (Clases Personalizadas + DELE)</title>
-    <meta name="description" content="Aprende español fluido en 8 semanas. Clases 1-a-1, profesores certificados DELE, comunidad viva. Comienza tu clase gratis hoy.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Linguaele – Juego</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
             --primary: #30B5AA;
-            --secondary: #FF705E;
-            --dark: #3E4D5D;
-            --light: #F5F7FA;
+            --primary-dark: #2a9d8f;
             --accent: #FFB627;
-        }
-
-        html {
-            scroll-behavior: smooth;
+            --danger: #e74c3c;
+            --success: #27ae60;
+            --cream: #f5f7fa;
+            --dark: #3E4D5D;
+            --card-bg: #ffffff;
+            --shadow: 0 2px 12px rgba(0,0,0,0.08);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--cream);
+            min-height: 100vh;
+            padding: 0 0 80px;
             color: var(--dark);
-            background: white;
         }
 
-        /* HEADER/NAV */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
+        /* ── HEADER ── */
+        .header {
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-        }
-
-        nav {
+            padding: 14px 18px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 50;
         }
 
         .logo {
-            font-size: 1.8em;
+            font-size: 1.4em;
             font-weight: 800;
             color: var(--dark);
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
-        .logo span {
-            color: var(--primary);
-        }
+        .logo span { color: var(--primary); }
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 500;
-            transition: color 0.3s ease;
-            font-size: 0.95em;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .cta-header {
-            background: var(--primary);
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .streak {
+            background: #fff5e0;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
             font-size: 0.9em;
         }
 
-        .cta-header:hover {
-            transform: scale(1.05);
-            background: #2a9d8f;
+        /* ── STATS BAR ── */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            padding: 14px;
         }
 
-        /* HERO */
-        .hero {
-            background: linear-gradient(135deg, rgba(48, 181, 170, 0.1) 0%, rgba(255, 112, 94, 0.05) 100%);
-            padding: 4rem 2rem;
+        .stat-card {
+            background: white;
+            padding: 12px 8px;
+            border-radius: 12px;
             text-align: center;
+            box-shadow: var(--shadow);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .stat-card .val {
+            font-size: 1.4em;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .stat-card small {
+            display: block;
+            font-size: 0.75em;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        /* ── XP PROGRESS ── */
+        .xp-bar-wrap {
+            padding: 0 14px 14px;
+        }
+
+        .xp-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8em;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .xp-bar {
+            background: #e0e4e8;
+            border-radius: 99px;
+            height: 8px;
+            overflow: hidden;
+        }
+
+        .xp-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+            border-radius: 99px;
+            transition: width 0.6s ease;
+        }
+
+        /* ── CATEGORY HEADERS ── */
+        .cat-label {
+            margin: 6px 14px 8px;
+            font-weight: 700;
+            color: var(--primary);
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            font-size: 0.9em;
+            letter-spacing: 0.3px;
+        }
+
+        /* ── MISSION GRID ── */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding: 0 14px;
+            margin-bottom: 4px;
+        }
+
+        .card {
+            background: white;
+            padding: 16px 12px;
+            border-radius: 14px;
+            text-align: center;
+            border: 2px solid transparent;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: transform 0.15s ease, border-color 0.15s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .hero::before {
-            content: '';
+        .card:active { transform: scale(0.96); }
+
+        .card.done {
+            border-color: var(--success);
+            opacity: 0.85;
+        }
+
+        .card.done::after {
+            content: '✓';
             position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(48, 181, 170, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            z-index: 0;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5em;
+            top: 6px;
+            right: 8px;
+            color: var(--success);
             font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            color: var(--dark);
-            letter-spacing: -2px;
+            font-size: 0.85em;
         }
 
-        .hero h1 .highlight {
-            color: var(--primary);
-        }
+        .card-emoji { font-size: 2em; margin-bottom: 4px; }
 
-        .hero .tagline {
-            font-size: 1.3em;
-            color: #666;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin: 2rem 0 3rem;
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5em;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            color: #666;
-            font-size: 0.9em;
-            margin-top: 0.5rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary) 0%, #2a9d8f 100%);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(48, 181, 170, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(48, 181, 170, 0.4);
-        }
-
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            padding: 1rem 2.5rem;
-            border: 2px solid var(--primary);
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-secondary:hover {
-            background: var(--light);
-        }
-
-        /* SECTION */
-        section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        h2 {
-            font-size: 2.5em;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: var(--dark);
-            text-align: center;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: #666;
-            font-size: 1.1em;
-            margin-bottom: 3rem;
-        }
-
-        /* WHY US */
-        .why-us {
-            background: white;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--light);
-            padding: 2rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .feature-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-        }
-
-        .feature-icon {
-            font-size: 3em;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card h3 {
-            font-size: 1.3em;
-            margin-bottom: 0.5rem;
-            color: var(--dark);
-        }
-
-        .feature-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* TESTIMONIOS */
-        .testimonials {
-            background: linear-gradient(135deg, rgba(48, 181, 170, 0.05) 0%, rgba(255, 112, 94, 0.05) 100%);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            border-left: 4px solid var(--secondary);
-        }
-
-        .stars {
-            color: #FFB627;
-            font-size: 1.2em;
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-text {
-            font-style: italic;
-            margin-bottom: 1rem;
-            line-height: 1.8;
-            color: #333;
-        }
-
-        .testimonial-author {
+        .card-name {
+            font-size: 0.78em;
             font-weight: 700;
             color: var(--dark);
-            margin-bottom: 0.3rem;
         }
 
-        .testimonial-role {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        /* PRECIOS */
-        .pricing {
-            background: white;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .pricing-card {
-            background: white;
-            border: 2px solid #e0e4e8;
-            border-radius: 15px;
-            padding: 2.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .pricing-card.featured {
-            border-color: var(--primary);
-            transform: scale(1.05);
-            box-shadow: 0 20px 40px rgba(48, 181, 170, 0.2);
-        }
-
-        .badge {
-            background: var(--secondary);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.8em;
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .card-level {
             display: inline-block;
-        }
-
-        .plan-name {
-            font-size: 1.8em;
-            font-weight: 800;
-            color: var(--dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .price {
-            font-size: 3em;
-            font-weight: 800;
-            color: var(--primary);
-            margin: 1rem 0;
-        }
-
-        .price-period {
-            color: #666;
-            font-size: 0.9em;
-        }
-
-        .features-list {
-            text-align: left;
-            margin: 2rem 0;
-        }
-
-        .features-list li {
-            list-style: none;
-            padding: 0.8rem 0;
-            border-bottom: 1px solid #e0e4e8;
-            color: #666;
-            display: flex;
-            align-items: center;
-        }
-
-        .features-list li:before {
-            content: "✓";
-            color: var(--primary);
-            font-weight: 800;
-            margin-right: 0.8rem;
-            font-size: 1.2em;
-        }
-
-        .pricing-card .btn-primary {
-            width: 100%;
-            margin-top: 1.5rem;
-            padding: 1rem 2rem;
-        }
-
-        /* FORMULARIO */
-        .register-section {
-            background: linear-gradient(135deg, var(--primary) 0%, #2a9d8f 100%);
-            color: white;
-        }
-
-        .register-section h2 {
-            color: white;
-        }
-
-        .register-section .section-subtitle {
-            color: rgba(255,255,255,0.9);
-        }
-
-        .form-container {
-            max-width: 500px;
-            margin: 0 auto;
-            background: white;
-            padding: 2.5rem;
-            border-radius: 15px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-            color: var(--dark);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
+            font-size: 0.65em;
+            background: var(--cream);
+            color: #888;
+            padding: 2px 6px;
+            border-radius: 6px;
+            margin-top: 4px;
             font-weight: 600;
-            color: var(--dark);
         }
 
-        .form-group input,
-        .form-group select {
+        /* ── MODAL ── */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            align-items: flex-end;
+            justify-content: center;
+            z-index: 100;
+            padding: 0;
+        }
+
+        .modal.active { display: flex; }
+
+        .modal-content {
+            background: white;
+            padding: 24px 20px 32px;
+            border-radius: 24px 24px 0 0;
             width: 100%;
-            padding: 0.8rem 1rem;
-            border: 2px solid #e0e4e8;
-            border-radius: 8px;
+            max-width: 480px;
+            animation: slideUp 0.25s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to   { transform: translateY(0);    opacity: 1; }
+        }
+
+        .modal-emoji { font-size: 3em; text-align: center; margin-bottom: 8px; }
+
+        .modal-title {
+            font-size: 1.2em;
+            font-weight: 800;
+            text-align: center;
+            color: var(--dark);
+            margin-bottom: 4px;
+        }
+
+        .modal-desc {
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .modal-hint {
+            background: #f0faf9;
+            border-left: 4px solid var(--primary);
+            padding: 8px 12px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.82em;
+            color: #555;
+            margin-bottom: 14px;
+        }
+
+        .modal input {
+            width: 100%;
+            padding: 13px 14px;
+            border: 2px solid #ddd;
+            border-radius: 12px;
             font-size: 1em;
-            transition: border-color 0.3s ease;
+            outline: none;
+            transition: border-color 0.2s;
             font-family: inherit;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(48, 181, 170, 0.1);
-        }
+        .modal input:focus { border-color: var(--primary); }
 
-        .form-submit {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary) 0%, #2a9d8f 100%);
-            color: white;
-            padding: 1rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
+        .modal input.correct { border-color: var(--success); background: #f0fff4; }
+        .modal input.wrong   { border-color: var(--danger);  background: #fff5f5; }
+
+        .feedback {
+            min-height: 28px;
+            text-align: center;
             font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            font-size: 0.9em;
+            margin: 10px 0 6px;
+            transition: opacity 0.3s;
         }
 
-        .form-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(48, 181, 170, 0.3);
-        }
+        .feedback.success { color: var(--success); }
+        .feedback.error   { color: var(--danger); }
 
-        /* FAQ */
-        .faq {
-            background: white;
-        }
-
-        .faq-item {
-            background: var(--light);
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--primary);
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-        }
-
-        .faq-question {
-            font-weight: 700;
-            color: var(--dark);
-            font-size: 1.1em;
-        }
-
-        .faq-answer {
-            margin-top: 1rem;
-            color: #666;
-            line-height: 1.8;
-            display: none;
-        }
-
-        .faq-item.active .faq-answer {
+        .btn {
             display: block;
+            width: 100%;
+            padding: 13px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: transform 0.1s, opacity 0.1s;
+            font-family: inherit;
         }
 
-        /* FOOTER */
-        footer {
+        .btn:active { transform: scale(0.97); opacity: 0.9; }
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-secondary { background: #f0f0f0; color: #555; }
+
+        /* ── ACHIEVEMENT TOAST ── */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
             background: var(--dark);
             color: white;
-            text-align: center;
-            padding: 2rem;
+            padding: 12px 20px;
+            border-radius: 14px;
+            font-size: 0.9em;
+            font-weight: 600;
+            white-space: nowrap;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 200;
+            pointer-events: none;
         }
 
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
         }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2em;
-            }
-
-            .nav-links {
-                gap: 1rem;
-                font-size: 0.9em;
-            }
-
-            .hero-stats {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            h2 {
-                font-size: 2em;
-            }
-
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .btn-primary,
-            .btn-secondary {
-                width: 100%;
-            }
-        }
-
-        /* ANIMATIONS */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content {
-            animation: fadeInUp 0.8s ease;
-        }
-
-        .feature-card {
-            animation: fadeInUp 0.8s ease;
-            animation-fill-mode: both;
-        }
-
-        .feature-card:nth-child(1) { animation-delay: 0.1s; }
-        .feature-card:nth-child(2) { animation-delay: 0.2s; }
-        .feature-card:nth-child(3) { animation-delay: 0.3s; }
-        .feature-card:nth-child(4) { animation-delay: 0.4s; }
-        .feature-card:nth-child(5) { animation-delay: 0.5s; }
-        .feature-card:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <nav>
-            <div class="logo">Lingua<span>ele</span></div>
-            <ul class="nav-links">
-                <li><a href="#why">¿Por Qué?</a></li>
-                <li><a href="#testimonials">Testimonios</a></li>
-                <li><a href="#pricing">Precios</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-            <a href="#register" class="cta-header">Clase Gratis</a>
-        </nav>
-    </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Habla Español con <span class="highlight">Confianza</span> en 8 Semanas</h1>
-            <p class="tagline">Clases 1-a-1 personalizadas • Profesores certificados DELE • Comunidad viva • 100% online</p>
-            
-            <div class="hero-stats">
-                <div class="stat">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">Estudiantes Felices</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">98%</div>
-                    <div class="stat-label">Tasa de Éxito</div>
-                </div>
-                <div class="stat">
-                    <div class="stat-number">4.9★</div>
-                    <div class="stat-label">Calificación Promedio</div>
-                </div>
-            </div>
+    <div class="header">
+        <div class="logo">Lingua<span>ele</span></div>
+        <div class="streak" id="streakBadge">🔥 1</div>
+    </div>
 
-            <div class="cta-buttons">
-                <button onclick="document.getElementById('register').scrollIntoView()" class="btn-primary">
-                    🎁 Agendar Clase Gratis
-                </button>
-                <button onclick="document.getElementById('faq').scrollIntoView()" class="btn-secondary">
-                    Saber Más
-                </button>
-            </div>
+    <div class="stats">
+        <div class="stat-card"><div class="val" id="xpVal">0</div><small>XP</small></div>
+        <div class="stat-card"><div class="val" id="levelVal">A1</div><small>Nivel</small></div>
+        <div class="stat-card"><div class="val" id="logrosVal">0</div><small>Logros</small></div>
+    </div>
+
+    <div class="xp-bar-wrap">
+        <div class="xp-label">
+            <span id="xpCurLabel">0 XP</span>
+            <span id="xpNextLabel">Próximo: A2 (50 XP)</span>
         </div>
-    </section>
+        <div class="xp-bar"><div class="xp-fill" id="xpFill" style="width:0%"></div></div>
+    </div>
 
-    <!-- WHY US -->
-    <section id="why" class="why-us">
-        <h2>¿Por Qué Elegir <span class="highlight">Linguaele</span>?</h2>
-        <p class="section-subtitle">No somos una escuela de español más. Somos tu comunidad de aprendizaje.</p>
-        
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">👨‍🏫</div>
-                <h3>Profesores Certificados</h3>
-                <p>Todos nuestros maestros tienen certificación DELE y más de 5 años de experiencia enseñando.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎮</div>
-                <h3>Aprendizaje Gamificado</h3>
-                <p>Aprende jugando. Gana puntos, badges, y compite con otros estudiantes en nuestra plataforma.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🗣️</div>
-                <h3>Habla desde Día 1</h3>
-                <p>Método comunicativo real. El 80% de cada clase es CONVERSACIÓN, no teoría.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🌍</div>
-                <h3>Comunidad Global</h3>
-                <p>Practica con estudiantes de 40+ países. Haz amigos mientras aprendes.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⏰</div>
-                <h3>Horarios Flexibles</h3>
-                <p>Clases 100% online. Elige tu horario. Estudia en pijama si quieres.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3>Resultados Comprobados</h3>
-                <p>A1 → B2 en 6 meses. Muchos estudiantes aprueban DELE al primer intento.</p>
-            </div>
-        </div>
-    </section>
+    <div id="game-content"></div>
 
-    <!-- TESTIMONIOS -->
-    <section id="testimonials" class="testimonials">
-        <h2>Lo Que Dicen Nuestros Estudiantes</h2>
-        <p class="section-subtitle">Historias reales de transformación lingüística</p>
-        
-        <div class="testimonials-grid">
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"Hace 3 meses no podía pedir un café en español. Hoy tuve una conversación de 30 minutos completamente en español. Linguaele cambió mi vida."</p>
-                <div class="testimonial-author">María García</div>
-                <div class="testimonial-role">Ejecutiva, USA</div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"Los profesores no son robots. Son personas. Eso hace la diferencia. Aprendes, te ríes, haces amigos. Así debería ser la educación."</p>
-                <div class="testimonial-author">Carlos López</div>
-                <div class="testimonial-role">Ingeniero, Canadá</div>
-            </div>
-            <div class="testimonial-card">
-                <div class="stars">★★★★★</div>
-                <p class="testimonial-text">"Aprobé el DELE B2 con distinción. El método gamificado hizo que estudiar no sea cansador. Recomiendo Linguaele 100%."</p>
-                <div class="testimonial-author">Sofia Chen</div>
-                <div class="testimonial-role">Estudiante de Postgrado, Australia</div>
-            </div>
-        </div>
-    </section>
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content" id="modalBody"></div>
+    </div>
 
-    <!-- PRECIOS -->
-    <section id="pricing" class="pricing">
-        <h2>Planes Transparentes, Sin Sorpresas</h2>
-        <p class="section-subtitle">Elige el plan que se adapte a tus objetivos</p>
-        
-        <div class="pricing-grid">
-            <div class="pricing-card">
-                <div class="plan-name">Principiante</div>
-                <div class="price">$49<span class="price-period">/mes</span></div>
-                <p style="color: #666; margin-bottom: 1rem;">Perfecto para empezar</p>
-                <ul class="features-list">
-                    <li>2 clases por semana (30 min c/u)</li>
-                    <li>Acceso plataforma gamificada</li>
-                    <li>Material didáctico</li>
-                    <li>Comunidad privada</li>
-                </ul>
-                <button class="btn-primary" onclick="document.getElementById('register').scrollIntoView()">Empezar</button>
-            </div>
-
-            <div class="pricing-card featured">
-                <div class="badge">MÁS POPULAR</div>
-                <div class="plan-name">Intensivo</div>
-                <div class="price">$119<span class="price-period">/mes</span></div>
-                <p style="color: #666; margin-bottom: 1rem;">Recomendado por 80% de estudiantes</p>
-                <ul class="features-list">
-                    <li>4 clases por semana (45 min c/u)</li>
-                    <li>Acceso plataforma premium</li>
-                    <li>Material + preparación DELE</li>
-                    <li>Comunidad + mentoría grupal</li>
-                    <li>Soporte 24/7 por WhatsApp</li>
-                </ul>
-                <button class="btn-primary" onclick="document.getElementById('register').scrollIntoView()">Empezar</button>
-            </div>
-        </div>
-
-        <p style="text-align: center; margin-top: 2rem; color: #666; font-size: 0.95em;">
-            ✓ Todos los planes incluyen 1ª clase de diagnóstico GRATIS<br>
-            ✓ Cancelación flexible, sin compromiso de largo plazo<br>
-            ✓ Dinero de vuelta si no mejoras en 4 semanas
-        </p>
-    </section>
-
-    <!-- REGISTRO -->
-    <section id="register" class="register-section">
-        <h2>Agendar Tu Clase de Diagnóstico Gratis</h2>
-        <p class="section-subtitle">Descubre tu nivel en 30 minutos (sin compromiso)</p>
-        
-        <div class="form-container">
-            <form onsubmit="handleSubmit(event)">
-                <div class="form-group">
-                    <label for="name">Nombre Completo</label>
-                    <input type="text" id="name" name="name" required placeholder="Tu nombre">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required placeholder="eledlengua@gmail.com">
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">WhatsApp (con código de país)</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="+50 7639 05870">
-                </div>
-
-                <div class="form-group">
-                    <label for="level">¿Cuál es tu nivel actual?</label>
-                    <select id="level" name="level" required>
-                        <option value="">Selecciona...</option>
-                        <option value="principiante">Principiante (No sé nada)</option>
-                        <option value="basico">Básico (Algunas palabras)</option>
-                        <option value="intermedio">Intermedio (Conversación simple)</option>
-                        <option value="avanzado">Avanzado (Fluido casi)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="goal">¿Cuál es tu objetivo?</label>
-                    <select id="goal" name="goal" required>
-                        <option value="">Selecciona...</option>
-                        <option value="conversacion">Hablar fluidamente</option>
-                        <option value="trabajo">Mejorar en el trabajo</option>
-                        <option value="dele">Preparar DELE</option>
-                        <option value="viaje">Viajar sin miedo</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="form-submit">
-                    Agendar Mi Clase Gratis →
-                </button>
-
-                <p style="text-align: center; margin-top: 1rem; font-size: 0.85em; color: #999;">
-                    Te responderemos en menos de 2 horas
-                </p>
-            </form>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="faq">
-        <h2>Preguntas Frecuentes</h2>
-        <p class="section-subtitle">Aquí respondemos lo que más preguntan</p>
-
-        <div class="faq-item active" onclick="toggleFaq(this)">
-            <div class="faq-question">¿Realmente necesito vivir en un país hispanohablante?</div>
-            <div class="faq-answer">No. Absolutamente no. Con método correcto + profesores buenos + consistencia, aprendes desde cualquier lugar. Tenemos estudiantes de 40 países diferentes.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">¿Cuánto tiempo tarda ver resultados?</div>
-            <div class="faq-answer">Primeros resultados: 2-3 semanas. Conversaciones básicas: 4-6 semanas. Fluidez real: 3-6 meses (depende de tu nivel inicial y consistencia).</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">¿Puedo cambiar de horario si no me gusta?</div>
-            <div class="faq-answer">Sí. Puedes cambiar tu horario sin problema. Queremos que aprendas en tu mejor momento. Solo avísanos con 48 horas de anticipación.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">¿Qué incluye la clase de diagnóstico gratis?</div>
-            <div class="faq-answer">30 minutos contigo un profesor. Hacemos un pequeño test, hablamos, evaluamos tu nivel y te damos un plan personalizado. Sin venta agresiva, sin presión.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">¿Necesito experiencia previa?</div>
-            <div class="faq-answer">No. Empezamos desde CERO si es necesario. Hemos trabajado con gente que nunca habló español en su vida. El método funciona.</div>
-        </div>
-
-        <div class="faq-item" onclick="toggleFaq(this)">
-            <div class="faq-question">¿Se puede cancelar cuando quiera?</div>
-            <div class="faq-answer">Sí. Sin compromiso de largo plazo. Si en 4 semanas no ves mejora, te devolvemos todo el dinero. Así de confiados estamos en nuestro método.</div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <p>&copy; 2024 Linguaele. Todos los derechos reservados.</p>
-        <p>Hecho con ❤️ para hispanohablantes del mundo</p>
-    </footer>
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
 
     <script>
-        function toggleFaq(element) {
-            // Cerrar otros items
-            document.querySelectorAll('.faq-item').forEach(item => {
-                if (item !== element) {
-                    item.classList.remove('active');
-                }
-            });
-            // Toggle actual
-            element.classList.toggle('active');
+    // ── LEVEL THRESHOLDS ──────────────────────────────────────────────
+    const LEVELS = [
+        { name: 'A1', min: 0,   max: 50  },
+        { name: 'A2', min: 50,  max: 150 },
+        { name: 'B1', min: 150, max: 300 },
+        { name: 'B2', min: 300, max: 500 },
+        { name: 'C1', min: 500, max: 999 },
+    ];
+
+    // ── MISSION DATA ──────────────────────────────────────────────────
+    const MISSIONS = [
+        // Profesional
+        { id: 1,  cat: 'Profesional', n: 'Aduana',      e: '✈️',  level: 'A1',
+          q: '¿Cuál es el motivo de tu viaje?',
+          hint: 'Responde con la razón del viaje. Ej: "turismo"',
+          valid: ['turismo','negocios','vacaciones','trabajo','estudio'], xp: 10,
+          logro: 'Viajero Experimentado' },
+
+        { id: 2,  cat: 'Profesional', n: 'Entrevista',  e: '💼',  level: 'B1',
+          q: 'He ___ en una escuela internacional.',
+          hint: 'Verbo "trabajar" en pretérito perfecto (participio)',
+          valid: ['trabajado'], xp: 15,
+          logro: 'Candidato Competitivo' },
+
+        { id: 3,  cat: 'Profesional', n: 'Reunión',     e: '📊',  level: 'B1',
+          q: '¿___ presentar el informe hoy?',
+          hint: 'Verbo modal para obligación (poder / deber / tener que)',
+          valid: ['puedes','puede','puedo','debes','deberías','tienes que'], xp: 15,
+          logro: 'Profesional Seguro' },
+
+        { id: 4,  cat: 'Profesional', n: 'Email',       e: '📧',  level: 'A2',
+          q: 'Me ___ en contacto con usted.',
+          hint: 'Verbo "ponerse" conjugado (1ª persona singular presente)',
+          valid: ['pongo'], xp: 10,
+          logro: 'Comunicador Eficaz' },
+
+        // Emergencias
+        { id: 5,  cat: 'Emergencias', n: 'Médico',      e: '🏥',  level: 'A2',
+          q: 'Me ___ la cabeza.',
+          hint: 'Verbo "doler" conjugado (3ª persona singular)',
+          valid: ['duele'], xp: 10,
+          logro: 'Paciente Independiente' },
+
+        { id: 6,  cat: 'Emergencias', n: 'Policía',     e: '🚨',  level: 'A1',
+          q: '¡Necesito ___!',
+          hint: 'Palabra para pedir socorro urgente',
+          valid: ['ayuda','socorro','auxilio'], xp: 10,
+          logro: 'Héroe Urbano' },
+
+        { id: 7,  cat: 'Emergencias', n: 'Farmacia',    e: '💊',  level: 'A2',
+          q: '¿Tiene algo para el ___?',
+          hint: 'Escribe un síntoma o enfermedad común (dolor, resfriado, fiebre…)',
+          valid: ['dolor','resfriado','fiebre','estómago','tos','gripe','catarro'], xp: 10,
+          logro: 'Viajero Sano' },
+
+        { id: 8,  cat: 'Emergencias', n: 'Accidente',   e: '🚗',  level: 'B1',
+          q: 'Ha ___ un accidente en la calle.',
+          hint: 'Verbo "haber" + participio de "ocurrir"',
+          valid: ['ocurrido','habido','pasado','sucedido'], xp: 15,
+          logro: 'Ciudadano Responsable' },
+
+        // Social
+        { id: 9,  cat: 'Social',      n: 'Presentarse', e: '👋',  level: 'A1',
+          q: '___ llamo Ana. ¿Y tú?',
+          hint: 'Pronombre reflexivo para presentarse',
+          valid: ['me'], xp: 10,
+          logro: 'Sociable' },
+
+        { id: 10, cat: 'Social',      n: 'Restaurante', e: '🍽️', level: 'A1',
+          q: 'Quisiera ___ la carta, por favor.',
+          hint: 'Verbo para solicitar algo que te traigan',
+          valid: ['ver','pedir','tener'], xp: 10,
+          logro: 'Gourmet Local' },
+
+        { id: 11, cat: 'Social',      n: 'Disculparse', e: '🙏',  level: 'A1',
+          q: '___ usted, ¿dónde está la estación?',
+          hint: 'Expresión de cortesía para interrumpir a alguien',
+          valid: ['perdone','disculpe','perdón','disculpa','oiga'], xp: 10,
+          logro: 'Cortés y Educado' },
+
+        { id: 12, cat: 'Social',      n: 'Invitación',  e: '🥂',  level: 'A2',
+          q: '¿___ venir a la fiesta el sábado?',
+          hint: 'Verbo modal de posibilidad (2ª persona singular)',
+          valid: ['puedes','podrías','quieres'], xp: 10,
+          logro: 'Anfitrión Perfecto' },
+
+        // Viajes
+        { id: 13, cat: 'Viajes',      n: 'Hotel',       e: '🏨',  level: 'A1',
+          q: 'Tengo una ___ a nombre de García.',
+          hint: 'Sustantivo: reserva o confirmación de habitación',
+          valid: ['reserva','reservación','habitación'], xp: 10,
+          logro: 'Viajero Cómodo' },
+
+        { id: 14, cat: 'Viajes',      n: 'Transporte',  e: '🚌',  level: 'A1',
+          q: '¿A qué ___ sale el próximo autobús?',
+          hint: 'Sustantivo que indica la hora de salida',
+          valid: ['hora','tiempo','horario'], xp: 10,
+          logro: 'Viajero Puntual' },
+
+        { id: 15, cat: 'Viajes',      n: 'Compras',     e: '🛍️', level: 'A2',
+          q: '¿Cuánto ___ esto?',
+          hint: 'Verbo "costar" en 3ª persona singular presente',
+          valid: ['cuesta','vale'], xp: 10,
+          logro: 'Comprador Inteligente' },
+
+        { id: 16, cat: 'Viajes',      n: 'Dirección',   e: '🗺️', level: 'A2',
+          q: 'Gira a la ___ en el semáforo.',
+          hint: 'Una de las dos direcciones laterales',
+          valid: ['derecha','izquierda'], xp: 10,
+          logro: 'Explorador Urbano' },
+    ];
+
+    // ── STATE ─────────────────────────────────────────────────────────
+    let state = loadState();
+
+    function loadState() {
+        try {
+            const s = JSON.parse(localStorage.getItem('linguaele_state') || '{}');
+            return {
+                xp:       s.xp       || 0,
+                done:     s.done     || [],
+                streak:   s.streak   || 1,
+                lastDate: s.lastDate || null,
+            };
+        } catch { return { xp: 0, done: [], streak: 1, lastDate: null }; }
+    }
+
+    function saveState() {
+        localStorage.setItem('linguaele_state', JSON.stringify(state));
+    }
+
+    function getLevel(xp) {
+        for (let i = LEVELS.length - 1; i >= 0; i--) {
+            if (xp >= LEVELS[i].min) return LEVELS[i];
         }
+        return LEVELS[0];
+    }
 
-        function handleSubmit(event) {
-            event.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const level = document.getElementById('level').value;
-            const goal = document.getElementById('goal').value;
-
-            // Aquí integrarías con tu sistema (Zapier, Make, etc.)
-            // Por ahora, simular confirmación
-            
-            alert(`¡Perfecto ${name}! 🎉\n\nTu solicitud fue enviada. Te contactaremos por WhatsApp en menos de 2 horas.\n\nMientras tanto, síguenos en Instagram: @linguaele`);
-            
-            // Limpiar formulario
-            document.querySelector('form').reset();
-
-            // En producción, enviar datos a tu backend
-            console.log({name, email, phone, level, goal});
+    // ── STREAK LOGIC ──────────────────────────────────────────────────
+    (function checkStreak() {
+        const today = new Date().toDateString();
+        if (state.lastDate && state.lastDate !== today) {
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            if (state.lastDate !== yesterday.toDateString()) {
+                state.streak = 1; // reset if missed a day
+            } else {
+                state.streak++;
+            }
         }
+        state.lastDate = today;
+        saveState();
+    })();
 
-        // Scroll suave en nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+    // ── UI RENDERERS ──────────────────────────────────────────────────
+    function updateStats() {
+        const lv = getLevel(state.xp);
+        const lvNext = LEVELS[LEVELS.indexOf(lv) + 1];
+        const pct = lvNext
+            ? Math.round(((state.xp - lv.min) / (lvNext.min - lv.min)) * 100)
+            : 100;
+
+        document.getElementById('xpVal').textContent = state.xp;
+        document.getElementById('levelVal').textContent = lv.name;
+        document.getElementById('logrosVal').textContent = state.done.length;
+        document.getElementById('streakBadge').textContent = `🔥 ${state.streak}`;
+        document.getElementById('xpFill').style.width = pct + '%';
+        document.getElementById('xpCurLabel').textContent = state.xp + ' XP';
+        document.getElementById('xpNextLabel').textContent = lvNext
+            ? `Próximo: ${lvNext.name} (${lvNext.min} XP)`
+            : '¡Nivel máximo!';
+    }
+
+    function render() {
+        updateStats();
+        const container = document.getElementById('game-content');
+        const cats = [...new Set(MISSIONS.map(m => m.cat))];
+        let html = '';
+
+        cats.forEach(cat => {
+            html += `<div class="cat-label">${cat}</div><div class="grid">`;
+            MISSIONS.filter(m => m.cat === cat).forEach(m => {
+                const done = state.done.includes(m.id);
+                html += `
+                    <div class="card${done ? ' done' : ''}" onclick="openModal(${m.id})">
+                        <div class="card-emoji">${m.e}</div>
+                        <div class="card-name">${m.n}</div>
+                        <div class="card-level">${m.level}</div>
+                    </div>`;
             });
+            html += `</div>`;
         });
+
+        container.innerHTML = html;
+    }
+
+    // ── MODAL ─────────────────────────────────────────────────────────
+    function openModal(id) {
+        const m = MISSIONS.find(x => x.id === id);
+        const already = state.done.includes(m.id);
+
+        document.getElementById('modalBody').innerHTML = `
+            <div class="modal-emoji">${m.e}</div>
+            <div class="modal-title">${m.n} <span style="font-size:0.6em;color:#aaa;font-weight:600">${m.level}</span></div>
+            <div class="modal-desc">${m.q}</div>
+            <div class="modal-hint">💡 ${m.hint}</div>
+            <input type="text" id="ans" placeholder="Tu respuesta…" autocomplete="off"
+                   autocapitalize="none" spellcheck="false"
+                   onkeydown="if(event.key==='Enter') validar(${m.id})">
+            <div class="feedback" id="feedback"></div>
+            <button class="btn btn-primary" id="checkBtn" onclick="validar(${m.id})">Comprobar ✓</button>
+            <button class="btn btn-secondary" onclick="cerrar()">Cerrar</button>
+        `;
+
+        if (already) {
+            setFeedback('¡Ya completaste esta misión! Puedes repasar.', 'success');
+        }
+
+        document.getElementById('modal').classList.add('active');
+        setTimeout(() => document.getElementById('ans').focus(), 300);
+    }
+
+    function setFeedback(msg, type) {
+        const fb = document.getElementById('feedback');
+        if (!fb) return;
+        fb.textContent = msg;
+        fb.className = `feedback ${type}`;
+    }
+
+    function validar(id) {
+        const m = MISSIONS.find(x => x.id === id);
+        const ans = (document.getElementById('ans').value || '').toLowerCase().trim();
+        const input = document.getElementById('ans');
+
+        if (!ans) {
+            setFeedback('Escribe algo primero.', 'error');
+            return;
+        }
+
+        const correct = m.valid.some(v => ans.includes(v));
+
+        if (correct) {
+            input.className = 'correct';
+            const isNew = !state.done.includes(m.id);
+            if (isNew) {
+                state.xp += m.xp;
+                state.done.push(m.id);
+                saveState();
+                const prevLevel = getLevel(state.xp - m.xp).name;
+                const newLevel  = getLevel(state.xp).name;
+                if (newLevel !== prevLevel) {
+                    showToast(`🎓 ¡Subiste a nivel ${newLevel}!`);
+                } else {
+                    showToast(`🏅 Logro: ${m.logro}  +${m.xp} XP`);
+                }
+            } else {
+                setFeedback('¡Correcto! (ya tenías este logro)', 'success');
+            }
+            document.getElementById('checkBtn').textContent = 'Siguiente →';
+            document.getElementById('checkBtn').onclick = cerrar;
+            if (isNew) setFeedback('¡Excelente! +' + m.xp + ' XP', 'success');
+            render();
+        } else {
+            input.className = 'wrong';
+            const hint = m.valid[0];
+            setFeedback(`Intenta de nuevo. Pista: "${hint}…"`, 'error');
+        }
+    }
+
+    function cerrar() {
+        document.getElementById('modal').classList.remove('active');
+    }
+
+    // ── TOAST ─────────────────────────────────────────────────────────
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ── CLOSE ON BACKDROP ─────────────────────────────────────────────
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) cerrar();
+    });
+
+    // ── INIT ──────────────────────────────────────────────────────────
+    render();
     </script>
 </body>
 </html>
